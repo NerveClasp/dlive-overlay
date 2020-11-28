@@ -16,7 +16,9 @@
 
   const users = {};
   let newUserIndex = 0;
-  const getMessageColor = sender => `color: ${textColors[users[sender.username]]};`
+  const getMessageColor = sender => 
+    `color: ${textColors[users[sender.username] % textColors.length]};`
+
   let messages = [];
 
   const refresh = () => {
