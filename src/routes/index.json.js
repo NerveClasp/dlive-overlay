@@ -1,5 +1,5 @@
 import nodefetch from "node-fetch";
-import params from "./secret.json";
+import params from "./secret";
 
 export async function get(req, res, next) {
   const response = await nodefetch("https://graphigo.prd.dlive.tv/", params)
