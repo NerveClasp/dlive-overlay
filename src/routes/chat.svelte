@@ -3,6 +3,7 @@
   import {filterXSS} from 'xss';
   import { onDestroy, onMount } from 'svelte';
   import { fade } from 'svelte/transition';
+  import { emojiRegex, emojiEndpoint } from '../common'
   import colors from './_colors';
   import settings from './_settings';
 
@@ -15,8 +16,6 @@
         textColors.push(hex)
       })
   })
-  const emojiEndpoint = 'https://images.prd.dlivecdn.com/emoji/'
-  const emojiRegex = /(DLive\w+)/gm;
 
   const users = {};
   let newUserIndex = 0;
