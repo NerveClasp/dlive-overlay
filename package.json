@@ -9,7 +9,30 @@
     "dev": "sapper dev",
     "build": "sapper build --legacy",
     "export": "sapper export --legacy",
-    "start": "node __sapper__/build"
+    "start": "node __sapper__/build",
+    "svgo": "svgo --config=./.svgo.json",
+    "prettier": "yarn prettier-fix && yarn prettier-fix-svelte",
+    "prettier-fix": "prettier --write \"./src/**/*.[jt]s{,x}\"",
+    "prettier-fix-svelte": "prettier --write \"./src/**/*.svelte\""
+  },
+  "lint-staged": {
+    "*.{js,jsx,ts,tsx,svelte}": [
+      "prettier --write",
+      "git add"
+    ],
+    "*.{json,md,scss,css,yaml,yml}": [
+      "prettier --write",
+      "git add"
+    ],
+    "*.svg": [
+      "npm run svgo",
+      "git add"
+    ]
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
   },
   "dependencies": {
     "body-parser": "^1.19.0",
@@ -30,10 +53,15 @@
     "@rollup/plugin-node-resolve": "^8.0.0",
     "@rollup/plugin-replace": "^2.2.0",
     "@rollup/plugin-url": "^5.0.0",
+    "husky": "^4.3.5",
+    "lint-staged": "^10.5.3",
+    "prettier": "^2.2.1",
+    "prettier-plugin-svelte": "^1.4.2",
     "rollup": "^2.3.4",
     "rollup-plugin-svelte": "^6.0.0",
     "rollup-plugin-terser": "^7.0.0",
     "sapper": "^0.28.0",
-    "svelte": "^3.17.3"
+    "svelte": "^3.17.3",
+    "svgo": "^1.3.2"
   }
 }

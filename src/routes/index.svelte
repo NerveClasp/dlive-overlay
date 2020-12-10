@@ -1,25 +1,27 @@
 <script>
-  import fetch from 'node-fetch';
+  import fetch from "node-fetch";
 
   let messages = [];
-  const refresh =() => {
-    fetch('http://localhost:3000/index.json').then(resp => {
-      return resp.json()
-    }).then(resp => {
-      messages = resp.userByDisplayName.chats
-    });
-  }
-  refresh()
+  const refresh = () => {
+    fetch("http://localhost:3000/index.json")
+      .then((resp) => {
+        return resp.json();
+      })
+      .then((resp) => {
+        messages = resp.userByDisplayName.chats;
+      });
+  };
+  refresh();
   setInterval(() => {
-    refresh()
-  }, 4000)
+    refresh();
+  }, 4000);
 </script>
 
 <style>
-	p {
-		text-align: center;
-		margin: 0 auto;
-	}
+  p {
+    text-align: center;
+    margin: 0 auto;
+  }
 
   .wrapper {
     background-color: white;
@@ -27,22 +29,20 @@
     opacity: 0.8;
   }
 
-	p {
-		margin: 1em auto;
-	}
+  p {
+    margin: 1em auto;
+  }
 </style>
 
 <svelte:head>
-	<title>Dlive Overlay</title>
+  <title>Dlive Overlay</title>
 </svelte:head>
 
-<div class='wrapper'>
+<div class="wrapper">
   <p>Chat</p>
   <ul>
-	{#each messages as { id, content, sender }, i}
-    <li>
-      {sender.username}: {content}
-    </li>
-	{/each}
-</ul>
+    {#each messages as { id, content, sender }, i}
+      <li>{sender.username}: {content}</li>
+    {/each}
+  </ul>
 </div>
