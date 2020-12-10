@@ -1,6 +1,6 @@
 import sirv from "sirv";
-import polka from "polka";
-import compression from "compression";
+import * as polka from "polka";
+import * as compression from "compression";
 import * as sapper from "@sapper/server";
 import { json } from "body-parser";
 

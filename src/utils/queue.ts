@@ -1,9 +1,21 @@
-class Queue {
-  head = null;
-  tail = null;
-  size = -1;
+interface INode<T> {
+  data: T;
+  next: INode<T> | null;
+}
 
-  add(data) {
+interface IQueue<T> {
+  add: (data: T) => void;
+  get: () => T | null;
+  getSize: () => number;
+  peak: () => T | null;
+}
+
+class Queue<T> implements IQueue<T> {
+  head: INode<T> | null = null;
+  tail: INode<T> | null = null;
+  size: number = -1;
+
+  add(data: T) {
     const node = { data, next: null };
 
     if (this.head === null) {
@@ -30,7 +42,8 @@ class Queue {
   }
 
   peak() {
-    return this.head;
+    if (!this.head) return null;
+    return this.head.data;
   }
 }
 
